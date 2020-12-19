@@ -71,7 +71,7 @@
                         };
                         function linkAdd() {
 
-                        document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ["q1", "q2", "q3", "q4"], datasets: [{ label: ${year}, data: [${values.sales["q1"]}, ${values.sales["q2"]}, [${values.sales["q3"]}, [${values.sales["q4"]}], backgroundColor: getGradientFillHelper('vertical', ["#36a2eb", "#a336eb", "#eb3639"]), }] }}" target="_blank">Открыть график</a></p>`
+                        document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ["q1", "q2", "q3", "q4"], datasets: [{ label: "Выручка за ${year} год", data: [${values.sales["q1"]}, ${values.sales["q2"]}, [${values.sales["q3"]}, [${values.sales["q4"]}], backgroundColor: getGradientFillHelper('vertical', ["#36a2eb", "#a336eb", "#eb3639"]), }] }}" target="_blank">Открыть график</a></p>`
 
 
                         };
