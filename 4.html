@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <div id="request-element">
+        <select name="year" id="select-year" value="">
+
+            <option>Год</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+
+        </select>
+        <button type="button" id="request-button">Загрузить отчёт</button>
+    </div>
+
+    <table style="width:20%">
+        <tr>
+            <td>1 кв.</td>
+            <td>2 кв.</td>
+            <td>3 кв.</td>
+            <td>4 кв.</td>
+        </tr>
+        <tr id="output"></tr>
+    </table>
+
+    <div id="link"></div>
+
+
+    <script>
+
+        const button = document.getElementById("request-button");
+        const link = document.getElementById("link")
+        button.addEventListener("click", useRequest);
+
+        function useRequest() {
+            let year = document.getElementById("select-year").value
+            if (year == "Год") {
+                alert("Выберите, пожалуйста, год")
+            } else {
+                let request = new XMLHttpRequest();
+
+                request.open("GET", "https://my.api.mockaroo.com/revenue_2017-2019.json?key=fd36b440");
+
+                request.onerror = function () {
+                    alert("Ошибка соединения, попробуйте ещё раз");
+                };
+
+                request.onload = function () {
+                    if (request.status != 200) {
+                        alert('Статус ответа: ', request.status)
+                    }
+                    else {
+                        let values = JSON.parse(request.responseText);
+
+                        switch (Number(year)) {
+                            case 2017:
+                                document.getElementById("output").innerHTML = `<td>${values[0].sales["q1"]}</td> <td>${values[0].sales["q2"]}</td> <td>${values[0].sales["q3"]}</td> <td>${values[0].sales["q4"]}</td>`;
+                                break;
+                            case 2018:
+                                document.getElementById("output").innerHTML = `<td>${values[1].sales["q1"]}</td> <td>${values[1].sales["q2"]}</td> <td>${values[1].sales["q3"]}</td> <td>${values[1].sales["q4"]}</td>`;
+                                break;
+                            case 2019:
+                                document.getElementById("output").innerHTML = `<td>${values[2].sales["q1"]}</td> <td>${values[2].sales["q2"]}</td> <td>${values[2].sales["q3"]}</td> <td>${values[2].sales["q4"]}</td>`;
+                                break;
+
+                        };
+                        function linkAdd() {
+
+                        document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ["q1", "q2", "q3", "q4"], datasets: [{ label: ${year}, data: [${values.sales["q1"]}, ${values.sales["q2"]}, [${values.sales["q3"]}, [${values.sales["q4"]}], backgroundColor: getGradientFillHelper('vertical', ["#36a2eb", "#a336eb", "#eb3639"]), }] }}" target="_blank">Открыть график</a></p>`
+
+
+                        };
+                    };
+                };
+
+                request.send();
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>
