@@ -67,9 +67,10 @@ function pageLoaded () {
 
     };
     function formatOutput(data) {
+    let output = "";
+
     if (data.completed == true) {
-        let output = `
-        
+    let completed = `
     <li>{</li>
     <li>"userId": ${data.userId},</li>
     <li>"id": ${data.id},</li>
@@ -77,10 +78,12 @@ function pageLoaded () {
     <li><strike>"completed": ${data.completed}</strike></li>
     <li>}</li>
     `
+    output += completed
     }
+
     else {
-        `
-        
+    let uncompleted =  `
+         
     <li>{</li>
     <li>"userId": ${data.userId},</li>
     <li>"id": ${data.id},</li>
@@ -88,6 +91,8 @@ function pageLoaded () {
     <li>"completed": ${data.completed}</li>
     <li>}</li>
     `
+    output += uncompleted
+    
     };
         return output;
     };
