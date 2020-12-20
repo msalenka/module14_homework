@@ -1,0 +1,114 @@
+<!-- Задание 7.
+
+Написать код приложения, интерфейс которого состоит из поля ввода и кнопки «Получить список задач». При нажатии на
+кнопку нужно отправить запрос с помощью fetch на URL https://jsonplaceholder.typicode.com/users/3/todos. Число 3
+представляет собой id пользователя, вместо него нужно подставить число, введенное в поле. Если пользователь с таким id
+существует, вернется список задач для этого пользователя, каждая задача представлена объектом вида:
+
+{
+"userId": 3,
+"id": 43,
+"title": "tempore ut sint quis recusandae",
+"completed": true
+}
+Где title — описание задачи, а completed — флаг, отображающий, выполнена задача или нет. Вывести данный список на
+страницу, оформив соответствующим образом: в виде списка (ul или ol), выполненные задачи должны быть написаны
+зачеркнутым текстом. Если пользователь с введенным id не существует, вывести сообщение:
+
+«Пользователь с указанным id не найден». -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+
+<input type="text" placeholder="Введите число" id="input">
+
+<button type="button" id="btn">Получить список задач</button>
+
+<ul id="list">
+</ul>
+
+<script>
+
+function pageLoaded () {
+    
+    let button = document.getElementById("btn");
+    let list = document.getElementById("list")
+    let input = document.getElementById("input")
+
+
+    button.addEventListener("click", useRequest);
+
+
+    function useRequest() {
+
+        if (!validated()) return;
+
+        else {
+            fetch(`https://jsonplaceholder.typicode.com/users/${input.value}/todos`)
+                .then(response => { response.json();
+                })
+                .then(data => {
+
+                    if (data.userId === input.value) {
+                    whriteOutput(formatOutput(data)) }
+
+                    else { alert ("Пользователь с указанным id не найден")};
+
+                });
+
+        };
+
+
+    };
+    function formatOutput(data) {
+    if (data.completed == true) {
+        let output = `
+        
+    <li>{</li>
+    <li>"userId": ${data.userId},</li>
+    <li>"id": ${data.id},</li>
+    <li>"title": ${data.title},</li>
+    <li><strike>"completed": ${data.completed}</strike></li>
+    <li>}</li>
+    `
+    }
+    else {
+        `
+        
+    <li>{</li>
+    <li>"userId": ${data.userId},</li>
+    <li>"id": ${data.id},</li>
+    <li>"title": ${data.title},</li>
+    <li>"completed": ${data.completed}</li>
+    <li>}</li>
+    `
+    };
+        return output;
+    };
+
+    function writeOutput(message) {
+        list.innerHTML = message;
+    }
+
+
+    function validated () {
+        let validated = true;
+        if (input.value === "" || isNaN(+input.value)) validated = false;
+        return validated;
+    };
+
+};
+document.addEventListener ("DOMContentLoaded", pageLoaded);
+
+
+</script>
+
+</body>
+
+</html>
