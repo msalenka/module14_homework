@@ -55,7 +55,7 @@ function pageLoaded () {
                 })
                 .then(data => {
 
-                    if (data.userId === input.value) {
+                    if (data.lenght != 0) {
                     whriteOutput(formatOutput(data)) }
 
                     else { alert ("Пользователь с указанным id не найден")};

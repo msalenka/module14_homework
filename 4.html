@@ -66,15 +66,15 @@
                         switch (Number(year)) {
                             case 2017:
                                 document.getElementById("output").innerHTML = `<td>${values[0].sales["q1"]}</td> <td>${values[0].sales["q2"]}</td> <td>${values[0].sales["q3"]}</td> <td>${values[0].sales["q4"]}</td>`;
-                                document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ["q1", "q2", "q3", "q4"], datasets: [{ label: 'Выручка за ${year} год', data: [${values[0].sales["q1"]}, ${values[0].sales["q2"]}, ${values[0].sales["q3"]}, ${values[0].sales["q4"]}], backgroundColor: getGradientFillHelper('vertical', ["#36a2eb", "#a336eb", "#eb3639"]), }] }}" target="_blank">Открыть график</a></p>`
+                                document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?c={type:'bar',data:{labels:['Кв.1','Кв.2','Кв.3','Кв.4'], datasets:[{label:'Выручка за ${year} год',data:[${values[0].sales["q1"]}, ${values[0].sales["q2"]}, ${values[0].sales["q3"]}, ${values[0].sales["q4"]}]}]}}" target="_blank">Открыть график</a></p>`
                                 break;
                             case 2018:
                                 document.getElementById("output").innerHTML = `<td>${values[1].sales["q1"]}</td> <td>${values[1].sales["q2"]}</td> <td>${values[1].sales["q3"]}</td> <td>${values[1].sales["q4"]}</td>`;
-                                document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ["q1", "q2", "q3", "q4"], datasets: [{ label: 'Выручка за ${year} год', data: [${values[1].sales["q1"]}, ${values[1].sales["q2"]}, ${values[1].sales["q3"]}, ${values[1].sales["q4"]}], backgroundColor: getGradientFillHelper('vertical', ["#36a2eb", "#a336eb", "#eb3639"]), }] }}" target="_blank">Открыть график</a></p>`
+                                document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?c={type:'bar',data:{labels:['Кв.1','Кв.2','Кв.3','Кв.4'], datasets:[{label:'Выручка за ${year} год',data:[${values[1].sales["q1"]}, ${values[1].sales["q2"]}, ${values[1].sales["q3"]}, ${values[1].sales["q4"]}]}]}}" target="_blank">Открыть график</a></p>`
                                 break;
                             case 2019:
                                 document.getElementById("output").innerHTML = `<td>${values[2].sales["q1"]}</td> <td>${values[2].sales["q2"]}</td> <td>${values[2].sales["q3"]}</td> <td>${values[2].sales["q4"]}</td>`;
-                                document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ["q1", "q2", "q3", "q4"], datasets: [{ label: 'Выручка за ${year} год', data: [${values[2].sales["q1"]}, ${values[2].sales["q2"]}, ${values[2].sales["q3"]}, ${values[2].sales["q4"]}], backgroundColor: getGradientFillHelper('vertical', ["#36a2eb", "#a336eb", "#eb3639"]), }] }}" target="_blank">Открыть график</a></p>`
+                                document.getElementById("link").innerHTML = `<p><a href="https://quickchart.io/chart?c={type:'bar',data:{labels:['Кв.1','Кв.2','Кв.3','Кв.4'], datasets:[{label:'Выручка за ${year} год',data:[${values[2].sales["q1"]}, ${values[2].sales["q2"]}, ${values[2].sales["q3"]}, ${values[2].sales["q4"]}]}]}}" target="_blank">Открыть график</a></p>`
                                 break;
 
                         };
