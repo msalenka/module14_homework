@@ -50,13 +50,12 @@ function pageLoaded () {
         if (!validated()) return;
 
         else {
+           
             fetch(`https://jsonplaceholder.typicode.com/users/${input.value}/todos`)
-                .then(response => { response.json();
-                })
-                .then(data => {
-
-                    if (data.lenght != 0) {
-                    whriteOutput(formatOutput(data)) }
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.length != 0) {
+                        formatOutput(data) }
 
                     else { alert ("Пользователь с указанным id не найден")};
 
@@ -94,12 +93,8 @@ function pageLoaded () {
     output += uncompleted
     
     };
-        return output;
+        return list.innerHTML = output
     };
-
-    function writeOutput(message) {
-        list.innerHTML = message;
-    }
 
 
     function validated () {

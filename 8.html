@@ -26,6 +26,20 @@ GET-параметр page — это число из первого input, а GE
 
 <head>
     <title>Page Title</title>
+    <style type="text/css">
+    
+    .images {
+        display: block;
+        width: 400px;
+        height: 300px;
+        padding: 40px;
+        }
+
+    body {
+        background-color: rgb(181, 200, 212);
+    }
+
+    </style>
 </head>
 
 <body>
@@ -35,30 +49,80 @@ GET-параметр page — это число из первого input, а GE
 <input type="text" placeholder="Лимит" id="input2">
 
 <div id="message"></div>
+<div id="image"></div>
 
 <button type="button" id="btn">Запрос</button>
 
 
 <script>
 
+
 function pageLoaded() {
 
+    let lastImages = localStorage.getItem("images");
+    if (lastImages != null) document.getElementById("image").innerHTML = lastImages 
+    
+    
     let button = document.getElementById("btn");
     let input = document.getElementById("input");
+    let input2 = document.getElementById("input2");
     let messageDiv = document.getElementById("message");
+    let imagesDiv = document.getElementById("image")
+
+
+
 
 
     button.addEventListener("click", useRequest);
     
     
     function useRequest() {
-        if (input.value > 10 || isNaN(+input.value)) {
-        let text = `<div>Номер страницы вне диапазона от 1 до 10</div>`
-        messageDiv.innerHTML = text}
+        if (input.value !== "" && input2.value !== "")
+        { 
+            if (input.value > 10 || input.value <1 || isNaN(+input.value) && input2.value > 10 || input2.value < 1 || isNaN(+input.value)) {
+            let text = `<div>Номер страницы и лимит вне диапазона от 1 до 10</div>`
+            messageDiv.innerHTML = text }
+            
+            else if (input2.value > 10 || input2.value < 1 || isNaN(+input.value)) {
+            let text = `<div>Лимит страницы вне диапазона от 1 до 10</div>`
+            messageDiv.innerHTML = text}
+        
+            else if (input.value > 10 || input.value < 1 || isNaN(+input.value)) {
+            let text = `<div>Лимит вне диапазона от 1 до 10</div>`
+            messageDiv.innerHTML = text}
+
+            else {
+                fetch(`https://picsum.photos/v2/list?page=${input.value}&limit=${input2.value}`)
+               
+                    .then((response) => response.json())
+                    .then((data) => {
+                        let images = "";
+                        data.forEach(item => {
+                            let imageBlock =  `
+                                <div class="card">
+                                <img
+                                src="${item.download_url}"
+                                class="images"
+                                />
+                                </div>
+                            `;
+                            images += imageBlock;
+                            });
+
+
+                            localStorage.setItem("lastImages", images)
+                            imagesDiv.innerHTML = images
+                            debugger
+
+                    })
+                }
+        } else {
+            let text = `<div>Введите значения</div>`
+            messageDiv.innerHTML = text
+        };
+
+
     };
-
-
-
 
 };      
 
