@@ -48,10 +48,12 @@ GET-параметр page — это число из первого input, а GE
 
 <input type="text" placeholder="Лимит" id="input2">
 
+<button type="button" id="btn">Запрос</button>
+
 <div id="message"></div>
+
 <div id="image"></div>
 
-<button type="button" id="btn">Запрос</button>
 
 
 <script>
@@ -67,7 +69,7 @@ function pageLoaded() {
    
     let lastImages = localStorage.getItem("images");
 
-    if (lastImages != null) document.getElementById("images").innerHTML = lastImages;
+    if (lastImages != null) document.getElementById("image").innerHTML = lastImages;
 
 
     button.addEventListener("click", useRequest);
@@ -94,6 +96,7 @@ function pageLoaded() {
                     .then((response) => response.json())
                     .then((data) => {
                         let images = "";
+
                         data.forEach(item => {
                             let imageBlock =  `
                                 <div class="card">
@@ -107,8 +110,8 @@ function pageLoaded() {
                             });
 
 
-                            localStorage.setItem("images", images);
-                            imagesDiv.innerHTML = images;
+                        localStorage.setItem("images", images);
+                        imagesDiv.innerHTML = images;
 
                     })
                 }
