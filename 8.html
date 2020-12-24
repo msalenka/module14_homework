@@ -66,9 +66,8 @@ function pageLoaded() {
     let imagesDiv = document.getElementById("image")
    
     let lastImages = localStorage.getItem("images");
-    if (lastImages != null) {imagesDiv.innerHTML = lastImages}
 
-
+    if (lastImages != null) document.getElementById("images").innerHTML = lastImages;
 
 
     button.addEventListener("click", useRequest);
@@ -108,7 +107,7 @@ function pageLoaded() {
                             });
 
 
-                            localStorage.setItem("lastImages", images)
+                            localStorage.setItem("images", images);
                             imagesDiv.innerHTML = images;
 
                     })
