@@ -58,17 +58,15 @@ GET-параметр page — это число из первого input, а GE
 
 
 function pageLoaded() {
-
-    let lastImages = localStorage.getItem("images");
-    if (lastImages != null) document.getElementById("image").innerHTML = lastImages 
-    
     
     let button = document.getElementById("btn");
     let input = document.getElementById("input");
     let input2 = document.getElementById("input2");
     let messageDiv = document.getElementById("message");
     let imagesDiv = document.getElementById("image")
-
+   
+    let lastImages = localStorage.getItem("images");
+    if (lastImages != null) {imagesDiv.innerHTML = lastImages}
 
 
 
@@ -106,13 +104,12 @@ function pageLoaded() {
                                 />
                                 </div>
                             `;
-                            images += imageBlock;
+                            images += imageBlock
                             });
 
 
                             localStorage.setItem("lastImages", images)
-                            imagesDiv.innerHTML = images
-                            debugger
+                            imagesDiv.innerHTML = images;
 
                     })
                 }
