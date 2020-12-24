@@ -81,14 +81,16 @@ function pageLoaded() {
             if (input.value > 10 || input.value <1 || isNaN(+input.value) && input2.value > 10 || input2.value < 1 || isNaN(+input.value)) {
             let text = `<div>Номер страницы и лимит вне диапазона от 1 до 10</div>`
             messageDiv.innerHTML = text }
-            
+
+            else if (input.value > 10 || input.value < 1 || isNaN(+input.value)) {
+            let text = `<div>Номер страницы вне диапазона от 1 до 10</div>`
+            messageDiv.innerHTML = text
+            }
+
             else if (input2.value > 10 || input2.value < 1 || isNaN(+input.value)) {
             let text = `<div>Лимит страницы вне диапазона от 1 до 10</div>`
             messageDiv.innerHTML = text}
-        
-            else if (input.value > 10 || input.value < 1 || isNaN(+input.value)) {
-            let text = `<div>Лимит вне диапазона от 1 до 10</div>`
-            messageDiv.innerHTML = text}
+    
 
             else {
                 fetch(`https://picsum.photos/v2/list?page=${input.value}&limit=${input2.value}`)
@@ -116,7 +118,7 @@ function pageLoaded() {
                     })
                 }
         } else {
-            let text = `<div>Введите значения</div>`
+            let text = `<div>Введите все значения</div>`
             messageDiv.innerHTML = text
         };
 
