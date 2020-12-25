@@ -35,7 +35,7 @@
 
 <script>
 
-function pageLoaded () {
+function pageLoaded () {  
     
     let button = document.getElementById("btn");
     let list = document.getElementById("list")
@@ -55,46 +55,40 @@ function pageLoaded () {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.length != 0) {
-                        formatOutput(data) }
+                        let output = "";
+                        for ( i = 0; i < data.length; i ++) {
+                            output += data[i].completed ?  `
+                                    <li>{</li>
+                                    <li>"userId": ${data[i].userId},</li>
+                                    <li>"id": ${data[i].id},</li>
+                                    <li>"title": ${data[i].title},</li>
+                                    <li><strike>"completed": ${data[i].completed}</strike></li>
+                                    <li>}</li>
+                                    ` 
+                                    :
 
-                    else { alert ("Пользователь с указанным id не найден")};
+                                    `
+                                    <li>{</li>
+                                    <li>"userId": ${data[i].userId},</li>
+                                    <li>"id": ${data[i].id},</li>
+                                    <li>"title": ${data[i].title},</li>
+                                    <li>"completed": ${data[i].completed}</li>
+                                    <li>}</li>
+                                    `                            
+                                    };
 
-                });
+                                    list.innerHTML = output;
+                        }
+                        else { alert ("Пользователь с указанным id не найден")};
+                    })
+
+                };
 
         };
 
 
-    };
-    function formatOutput(data) {
-    let output = "";
 
-    if (data.completed == true) {
-    let completed = `
-    <li>{</li>
-    <li>"userId": ${data.userId},</li>
-    <li>"id": ${data.id},</li>
-    <li>"title": ${data.title},</li>
-    <li><strike>"completed": ${data.completed}</strike></li>
-    <li>}</li>
-    `
-    output += completed
-    }
 
-    else {
-    let uncompleted =  `
-         
-    <li>{</li>
-    <li>"userId": ${data.userId},</li>
-    <li>"id": ${data.id},</li>
-    <li>"title": ${data.title},</li>
-    <li>"completed": ${data.completed}</li>
-    <li>}</li>
-    `
-    output += uncompleted
-    
-    };
-        return list.innerHTML = output
-    };
 
 
     function validated () {
