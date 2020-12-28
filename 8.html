@@ -78,7 +78,7 @@ function pageLoaded() {
     function useRequest() {
         if (input.value !== "" && input2.value !== "")
         { 
-            if (input.value > 10 || input.value <1 || isNaN(+input.value) && input2.value > 10 || input2.value < 1 || isNaN(+input.value)) {
+            if ((input.value > 10 || input.value <1 || isNaN(+input.value)) && (input2.value > 10 || input2.value < 1 || isNaN(+input.value))) {
             let text = `<div>Номер страницы и лимит вне диапазона от 1 до 10</div>`
             messageDiv.innerHTML = text }
 
@@ -87,7 +87,7 @@ function pageLoaded() {
             messageDiv.innerHTML = text
             }
 
-            else if (input2.value > 10 || input2.value < 1 || isNaN(+input.value)) {
+            else if (input2.value > 10 || input2.value < 1 || isNaN(+input2.value)) {
             let text = `<div>Лимит страницы вне диапазона от 1 до 10</div>`
             messageDiv.innerHTML = text}
     
