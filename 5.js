@@ -31,6 +31,9 @@ if (userName == undefined) {
 
 const currentDate = new Date();
 localStorage.setItem("userName", userName);
-localStorage.setItem("date", `${currentDate.getDate()}-${currentDate.getMonth()}-${currentDate.getFullYear()} ${currentDate.getHours()}:0${currentDate.getMinutes()}`)
+localStorage.setItem("date", `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()} ${currentDate.getHours()}:${('0' + currentDate.getMinutes()).slice(-2)}`)
 
-
+// Есть замечания по выводу текущей даты:
+// currentDate.getMonth() возвращает номера месяцев от 0 до 11, т.е. 0 - это январь, 1 - это февраль и т.д. Чтобы выводить номер месяца в формате, понятном человеку, нужно добавлять к этому числу 1.
+// Минуты тоже не всегда выводятся корректно. Если число минут меньше 10, то всё в порядке, но если число минут, например, равно 25, то в итоге выводится 025, что выглядит странно. Нужно сделать вывод минут более гибким, с учетом этой особенности
+// Всё исправила в коде
