@@ -57,27 +57,10 @@ function pageLoaded () {
                     if (data.length != 0) {
                         let output = "";
                         for ( i = 0; i < data.length; i ++) {
-                            output += data[i].completed ?  `
-                                    <li>{</li>
-                                    <li>"userId": ${data[i].userId},</li>
-                                    <li>"id": ${data[i].id},</li>
-                                    <li>"title": ${data[i].title},</li>
-                                    <li><strike>"completed": ${data[i].completed}</strike></li>
-                                    <li>}</li>
-                                    ` 
-                                    :
+                            output += data[i].completed ?  `<li><strike>${data[i].title}</strike></li>` : `<li>${data[i].title}</li>`                            
+                        };
 
-                                    `
-                                    <li>{</li>
-                                    <li>"userId": ${data[i].userId},</li>
-                                    <li>"id": ${data[i].id},</li>
-                                    <li>"title": ${data[i].title},</li>
-                                    <li>"completed": ${data[i].completed}</li>
-                                    <li>}</li>
-                                    `                            
-                                    };
-
-                                    list.innerHTML = output;
+                        list.innerHTML = output;
                         }
                         else { alert ("Пользователь с указанным id не найден")};
                     })
@@ -100,6 +83,7 @@ function pageLoaded () {
 };
 document.addEventListener ("DOMContentLoaded", pageLoaded);
 
+// Некорректно сделан вывод. Нужно было выводить только сам текст задачи (он записан в свойстве title объекта), выполенные задачи писать зачеркнутым текстом. Остальную информацию выводить не нужно. Выше исправила
 
 </script>
 

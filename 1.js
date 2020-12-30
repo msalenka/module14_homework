@@ -58,7 +58,9 @@ const xmlString = `
 
 const xmlDom = parser.parseFromString(xmlString, "text/xml");
 
-let list = [];
+let result = {
+  list: []
+}
 const studentsNode = xmlDom.querySelectorAll("student");
 studentsNode.forEach((student) => { 
     let name = student.querySelector("first").textContent;
@@ -72,9 +74,12 @@ studentsNode.forEach((student) => {
         prof: prof,
         lang: nameAttr
     };
-    list.push(object);
+    result.list.push(object);
 });
 
-console.log(object);
+console.log(result);
 
-
+// Почти правильно, но есть несколько замечаний:
+// 1. В последней строчке в console.log используется переменная object, которая объявлена внутри цикла. Эта переменная локальная и доступна только в том блоке, где была объявлена. Поэтому её использование вне цикла вызывает ошибку
+// 2. Результат, который выводится в итоге в консоль, не полностью соответствует образцу в задании. У вас это массив с 2-мя объектами, а по заданию это должен быть объект, который содержит в себе массив
+// Всё перечисленное исправила в коде 

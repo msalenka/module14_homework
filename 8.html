@@ -93,6 +93,7 @@ function pageLoaded() {
     
 
             else {
+                messageDiv.innerHTML = '';
                 fetch(`https://picsum.photos/v2/list?page=${input.value}&limit=${input2.value}`)
                
                     .then((response) => response.json())
@@ -129,7 +130,7 @@ function pageLoaded() {
 
 document.addEventListener("DOMContentLoaded", pageLoaded);
 
-
+// Всё сделано верно, есть только одно маленькое замечание: если сначала ввести неверные данные (например, одно из чисел больше 10), а затем ввести верные данные, сообщение об ошибке останется. Лучше при вводе верных данных убирать сообщение об ошибке, чтобы оно не вводило пользователя в заблуждение
 </script>
 
 </body>
